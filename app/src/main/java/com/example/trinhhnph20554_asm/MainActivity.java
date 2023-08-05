@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.trinhhnph20554_asm.DAO.User_DAO;
 import com.example.trinhhnph20554_asm.Fragment.Setting_Fragment;
+import com.example.trinhhnph20554_asm.Model.User;
 
 public class MainActivity extends AppCompatActivity {
         TextView btnsignupnow,btnforgot;
@@ -34,11 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
                 String username = edtusername.getText().toString();
                 String pass =  edtpass.getText().toString();
-                Bundle bundle = new Bundle();
-                bundle.putString("username",username);
-                Setting_Fragment fragment = new Setting_Fragment();
-                fragment.setArguments(bundle);
-
                 if (username.equals("")){
                     Toast.makeText(MainActivity.this, "Mời nhập tên đăng nhập", Toast.LENGTH_SHORT).show();
                     return;
@@ -46,7 +42,10 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Xin vui lòng nhập mật khẩu", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                boolean check = user_dao.CheckLogin(username,pass);
+                User user = new User();
+                user.setUsername(username);
+                user.setPassword(pass);
+                boolean check = user_dao.CheckLogin(user);
 
             if (check==true){
                 Toast.makeText(MainActivity.this, "Đăng nhập thành công ", Toast.LENGTH_SHORT).show();

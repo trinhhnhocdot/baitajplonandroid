@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.trinhhnph20554_asm.DAO.User_DAO;
+import com.example.trinhhnph20554_asm.Model.User;
 
 import java.util.regex.Pattern;
 
@@ -51,7 +52,12 @@ public class Reginter_form extends AppCompatActivity {
                 }else   if (!pass.equals(repass)){
                     Toast.makeText(Reginter_form.this, "mật khẩu không trùng nhau ", Toast.LENGTH_SHORT).show();
                 }else {
-                        boolean check = user_dao.Register_(username,pass,email,fullname);
+                    User user = new User();
+                    user.setUsername(username);
+                    user.setPassword(pass);
+                    user.setEmail(email);
+                    user.setFullname(fullname);
+                        boolean check = user_dao.Register_(user);
                         if (check == true){
                             Toast.makeText(Reginter_form.this, "Đăng kí thành công ", Toast.LENGTH_SHORT).show();
                             finish();

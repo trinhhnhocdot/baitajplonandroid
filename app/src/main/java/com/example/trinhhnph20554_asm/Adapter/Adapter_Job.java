@@ -76,16 +76,16 @@ public class Adapter_Job extends RecyclerView.Adapter<Adapter_Job.MyviewHolder> 
     private void showdialogSua(Job job) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater layoutInflater = ((Activity) context).getLayoutInflater();
-        View view = layoutInflater.inflate(R.layout.edit_dialog, null);
-        builder.setView(view);
+        View v = layoutInflater.inflate(R.layout.edit_dialog, null);
+        builder.setView(v);
         AlertDialog alertDialog = builder.create();
-        Button btnout = view.findViewById(R.id.btnout);
-        Button btnsubmit = view.findViewById(R.id.btnsubmit);
-        EditText edt_title = view.findViewById(R.id.edt_title);
-        EditText edt_content = view.findViewById(R.id.edt_content);
-        TextView edt_startday = view.findViewById(R.id.edt_startday);
-        TextView edt_endday = view.findViewById(R.id.edt_endday);
-        Spinner spinner = view.findViewById(R.id.spiner_status);
+        Button btnout = v.findViewById(R.id.btnout_udapte);
+        Button btnsubmit = v.findViewById(R.id.btnsubmit);
+        EditText edt_title = v.findViewById(R.id.edt_title);
+        EditText edt_content = v.findViewById(R.id.edt_content);
+        TextView edt_startday = v.findViewById(R.id.edt_startday_update);
+        TextView edt_endday = v.findViewById(R.id.edt_enddayy_update);
+        Spinner spinner = v.findViewById(R.id.spiner_status);
         // hiển thị lên spinner
         Job_DAO job_dao = new Job_DAO(context);
         List<Status> liststatus = job_dao.GetAll_Status();
@@ -104,6 +104,24 @@ public class Adapter_Job extends RecyclerView.Adapter<Adapter_Job.MyviewHolder> 
                 spinner.setSelection(i);
             }
         }
+        edt_startday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePicker(edt_startday,v);
+            }
+        });
+        edt_endday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePicker(edt_endday,v);
+            }
+        });
+        btnout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
 
         btnsubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,24 +147,8 @@ public class Adapter_Job extends RecyclerView.Adapter<Adapter_Job.MyviewHolder> 
                     Toast.makeText(context, "Vui lòng chọn ngày kết thúc", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                edt_startday.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        showDatePicker(edt_startday);
-                    }
-                });
-                edt_endday.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        showDatePicker(edt_endday);
-                    }
-                });
-                btnout.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        alertDialog.dismiss();
-                    }
-                });
+
+
                 Job_DAO dao = new Job_DAO(context);
                 job.setName(title);
                 job.setContent(content);
@@ -169,12 +171,12 @@ public class Adapter_Job extends RecyclerView.Adapter<Adapter_Job.MyviewHolder> 
 
         alertDialog.show();
     }
-    private void showDatePicker(TextView edt_startday) {
+    private void showDatePicker(TextView edt_startday,View view) {
         final Calendar currentDate = Calendar.getInstance();
         int year = currentDate.get(Calendar.YEAR);
         int month = currentDate.get(Calendar.MONTH);
         int day = currentDate.get(Calendar.DAY_OF_MONTH);
-        DatePickerDialog datePickerDialog =new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog datePickerDialog =new DatePickerDialog(view.getContext(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 String selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;

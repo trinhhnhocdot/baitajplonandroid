@@ -129,7 +129,7 @@ public class Home_Fragment extends Fragment {
                 job.setContent(content);
                 job.setStartday(startday);
                 job.setEndday(endday);
-                job.setId_status(status.getId_status());
+                job.setId_status(1);
                 long kq = dao.Add_Row_job(job);
                 if (kq>0){
                     Toast.makeText(getContext(), "Thêm Thành Công", Toast.LENGTH_SHORT).show();
