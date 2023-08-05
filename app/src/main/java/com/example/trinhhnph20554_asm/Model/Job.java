@@ -4,9 +4,25 @@ public class Job {
     private  int id;
     private  String name;
     private  String content;
-    private  int status;
     private  String startday;
     private  String endday;
+    private  int id_status;
+    private String name_status;
+
+    public Job(int id, String name, String content, String startday, String endday, int id_status, String name_status) {
+        this.id = id;
+        this.name = name;
+        this.content = content;
+        this.startday = startday;
+        this.endday = endday;
+        this.id_status = id_status;
+        this.name_status = name_status;
+    }
+
+
+
+    public Job() {
+    }
 
     public int getId() {
         return id;
@@ -32,14 +48,6 @@ public class Job {
         this.content = content;
     }
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
     public String getStartday() {
         return startday;
     }
@@ -56,15 +64,19 @@ public class Job {
         this.endday = endday;
     }
 
-    public Job(int id, String name, String content, int status, String startday, String endday) {
-        this.id = id;
-        this.name = name;
-        this.content = content;
-        this.status = status;
-        this.startday = startday;
-        this.endday = endday;
+    public int getId_status() {
+        return id_status;
     }
 
-    public Job() {
+    public void setId_status(int id_status) {
+        this.id_status = id_status;
+    }
+
+    public String getName_status() {
+        return name_status;
+    }
+
+    public void setName_status(String name_status) {
+        this.name_status = name_status;
     }
 }

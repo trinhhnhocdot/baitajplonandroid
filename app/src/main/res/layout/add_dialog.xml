@@ -5,13 +5,13 @@
     android:orientation="vertical"
     android:layout_margin="16dp"
   >
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Thêm sự kiện"
         android:gravity="center"
         android:textSize="30dp"
+        android:layout_margin="3dp"
         android:padding="12dp"
         android:background="@color/green"
         android:textColor="@color/black"/>
@@ -21,6 +21,7 @@
       android:padding="20dp"
       android:orientation="vertical">
       <EditText
+          android:id="@+id/edt_title"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:hint="Title"
@@ -29,6 +30,7 @@
           android:layout_marginTop="20dp"
           />
       <EditText
+          android:id="@+id/edt_content"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:hint="Content"
@@ -36,32 +38,40 @@
           android:background="@drawable/border_edt"
           android:layout_marginTop="15dp"
           />
-      <EditText
+      <Spinner
+          android:id="@+id/spiner_status"
           android:layout_width="match_parent"
-          android:layout_height="wrap_content"
+          android:layout_height="50dp"
           android:hint="Status"
           android:padding="12dp"
           android:background="@drawable/border_edt"
           android:layout_marginTop="15dp"
+          android:spinnerMode="dialog"
           />
-      <EditText
-          android:drawableEnd="@drawable/baseline_date_range_24"
+      <TextView
+          android:id="@+id/edt_startday"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:hint="Start day "
-          android:padding="12dp"
           android:background="@drawable/border_edt"
           android:layout_marginTop="15dp"
-          />
-      <EditText
-          android:drawableEnd="@drawable/baseline_date_range_24"
+          android:text="Startday"
+          android:textSize="17dp"
+          android:textColor="#6E7478"
+          android:padding="12dp"
+          android:drawableEnd="@drawable/baseline_date_range_24"/>
+
+      <TextView
+          android:id="@+id/edt_endday"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:hint="End day"
-          android:padding="12dp"
           android:background="@drawable/border_edt"
           android:layout_marginTop="15dp"
-          />
+          android:text="Endday"
+          android:textSize="17dp"
+          android:textColor="#6E7478"
+          android:padding="12dp"
+          android:drawableEnd="@drawable/baseline_date_range_24"/>
+
 
   </LinearLayout>
     
@@ -81,6 +91,7 @@
             android:text="Out"
             android:textSize="14dp"/>
         <Button
+            android:id="@+id/btnsubmit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
